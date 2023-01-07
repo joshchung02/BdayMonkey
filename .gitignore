@@ -1,3 +1,4 @@
 *.pkl
+*.pyc
 token.py
 .DS_Store

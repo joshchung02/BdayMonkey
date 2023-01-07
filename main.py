@@ -1,6 +1,6 @@
 import discord
 import pickle
-import "token.py"
+import discord_token
 
 async def send_message(message, response, is_private):
     try:
@@ -137,7 +137,7 @@ def run_bot():
                 response = f"{name}'s birthday has been removed"
                 await send_message(message, response, is_private=False)
 
-    client.run(TOKEN)
+    client.run(discord_token.get_token())
 
 def validate_birthday(birthday) -> bool:
     if len(birthday) < 3 or len(birthday) > 5:
