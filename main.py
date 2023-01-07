@@ -1,5 +1,6 @@
 import discord
 import pickle
+import "token.py"
 
 async def send_message(message, response, is_private):
     try:
@@ -8,7 +9,6 @@ async def send_message(message, response, is_private):
         print(e)
 
 def run_bot():
-    TOKEN = "MTAxNzI1ODExMDA4MTA0ODYwNg.GQ0WNP.2W6IH3zm-XIl8pY4jQ9rg8wRt56cLTuqOXtvEI"
     client = discord.Client(intents=discord.Intents.all())
     CC = '-' # Command Char: Character to use commands
 
