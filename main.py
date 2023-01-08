@@ -52,7 +52,7 @@ def run_bot():
                             response = "The birthday list is empty!"
                             await send_message(message, response, is_private=False)
                             return
-                except EOFError:
+                except:
                     response = "The birthday list is empty!"
                     await send_message(message, response, is_private=False)
                 
@@ -82,7 +82,7 @@ def run_bot():
                 try:
                     with open('birthday_list.pkl', 'rb') as birthday_pickle:
                         birthday_list = pickle.load(birthday_pickle)
-                except EOFError:
+                except:
                     birthday_list = {}
                 
                 # Add new birthday and pickle
@@ -121,7 +121,7 @@ def run_bot():
                 try:
                     with open('birthday_list.pkl', 'rb') as birthday_pickle:
                         birthday_list = pickle.load(birthday_pickle)
-                except EOFError:
+                except:
                     response = "The birthday list is empty, no birthday to remove"
                     await send_message(message, response, is_private=False)
 
