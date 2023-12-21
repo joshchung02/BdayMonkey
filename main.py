@@ -1,6 +1,12 @@
 import discord
 import pickle
 import discord_token
+import random
+
+# For getting time to announce Birthdays
+from datetime import datetime
+from pytz import timezone
+import pytz
 
 async def send_message(message, response, is_private):
     try:
@@ -41,7 +47,7 @@ def run_bot():
 
             if user_message == "help":
                 # help command (provides instructions for using the bot)
-                response = f"```Commands:\n{CC}add name [M/D, M/DD, MM/D, MM/DD]: Add a birthday\n{CC}remove name: Remove a birthday\n{CC}display: Display all birthdays\n{CC}monkey: monkey```"
+                response = f"```Commands:\n{CC}add name [M/D, M/DD, MM/D, MM/DD]: Add a birthday\n{CC}remove name: Remove a birthday\n{CC}display: Display all birthdays\n{CC}celebrate: Celebrate today's birthdays\n{CC}monkey: monkey```"
                 await send_message(message, response, is_private=False)
             elif user_message == "display":
                 # display command (display all birthdays)
@@ -136,6 +142,39 @@ def run_bot():
                 
                 response = f"{name}'s birthday has been removed"
                 await send_message(message, response, is_private=False)
+
+            # celebrate command (announce any birthdays)
+            if message_parts[0] == "celebrate":
+                date_format='%m/%d' # We only want MM/DD (zero-padded)
+                date = datetime.now(tz=pytz.utc) # Get UTC time
+                date = date.astimezone(timezone('US/Pacific')) # Get PST time
+                datestr = date.strftime(date_format)
+
+                # load the birthday list
+                try:
+                    with open('birthday_list.pkl', 'rb') as birthday_pickle:
+                        birthday_list = pickle.load(birthday_pickle)
+                except:
+                    response = "The birthday list is empty, no birthdays to celebrate!"
+                    await send_message(message, response, is_private=False)
+
+                # find birthdays to announce
+                celebrate_list = []
+                for name in birthday_list:
+                    if birthday_list[name] == datestr:
+                        celebrate_list.append(name)
+
+                # celebrate if there is a birthday(s), funee otherwise
+                if celebrate_list:
+                    party_emojis = ["\U0001F389", "\U0001F973", "\U0001F381", "\U0001F388", "\U0001F38A"] # popper, party face, present, balloon, confetti
+                    for name in celebrate_list:
+                        emj = random.choice(party_emojis)
+                        response = f"{emj}{emj}{emj}HAPPY BIRTHDAY TO {name}!!!{emj}{emj}{emj}"
+                        await send_message(message, response, is_private=False)
+                else:
+                    funee = "https://www.youtube.com/watch?v=apPsjYs6HmE"
+                    response = f"No birthday to celebrate... Watch this instead: {funee}"
+                    await send_message(message, response, is_private=False)
 
     client.run(discord_token.get_token())
 
