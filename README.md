@@ -6,19 +6,22 @@
 
 # Example Usage:
 
-## help command
+## `help` command
 ![help example](images/help.png)
 
-## add command
+## `add` command
 
 ![add example](images/add.png)
 
-## display command
+## `display` command
 
 ![display example](images/display.png)
 
-## remove command
+## `remove` command
 ![remove example](images/remove.png)
 
-## monkey command (best one)
+## `celebrate` command
+![celebrate example](images/celebrate.png)
+
+## `monkey` command (best one)
 ![monkey example](images/monkey.png)
