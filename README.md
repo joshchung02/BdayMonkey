@@ -7,21 +7,21 @@
 # Example Usage:
 
 ## `help` command
-![help example](images/help.png)
+![help example](example_images/help.png)
 
 ## `add` command
 
-![add example](images/add.png)
+![add example](example_images/add.png)
 
 ## `display` command
 
-![display example](images/display.png)
+![display example](example_images/display.png)
 
 ## `remove` command
-![remove example](images/remove.png)
+![remove example](example_images/remove.png)
 
 ## `celebrate` command
-![celebrate example](images/celebrate.png)
+![celebrate example](example_images/celebrate.png)
 
 ## `monkey` command (best one)
-![monkey example](images/monkey.png)
+![monkey example](example_images/monkey.png)
